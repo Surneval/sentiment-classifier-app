@@ -1,5 +1,6 @@
 # Sentiment Classifier App
 ### Made by Nadezhda Trusova, HSE, MDS-2
+### For the course Large Scale Machine Learning-2
 
 This repository contains a sentiment analysis web application that classifies movie reviews as **positive** or **negative**. It includes:
 
