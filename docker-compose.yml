@@ -1,0 +1,37 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  service:
+    build:
+      context: ./service
+    container_name: sentiment_service
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - ./model:/app/model  # Ensure this line is indented correctlymes:
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - sentiment_network 
+
+  ui:
+    build:
+      context: ./ui
+    container_name: sentiment_ui
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
+    depends_on:
+      - service
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - API_URL=http://service:8000/predict
+    networks:
+      - sentiment_network
+
+networks:
+  sentiment_network:
+    driver: bridge

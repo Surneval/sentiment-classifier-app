@@ -1,0 +1,16 @@
+transformers>=4.0.0
+datasets>=2.0.0
+scikit-learn
+peft
+fastapi
+uvicorn[standard]
+mlflow
+streamlit
+requests
+torch
+evaluate
+nltk
+mlflow
+nltk
+mlflow
+nltk
