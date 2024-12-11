@@ -212,6 +212,4 @@ If not using Docker:
 
 This project is released under the [MIT License](LICENSE). You are free to modify and distribute this software as per the license conditions.
 
----
 
-**Happy Testing!**
