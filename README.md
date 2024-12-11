@@ -210,6 +210,7 @@ If not using Docker:
   - Ensure Docker Desktop is running.
   - Check `docker info` to confirm the daemon is active.
   - Try `docker-compose down` followed by `docker-compose up --build`.
+  - Try to restart Docker `pkill Docker` and then `open /Applications/Docker.app` and then `docker-compose down` followed by `docker-compose up --build`
 
 - **Model or Missing Files:**
   If the model files are missing, rerun `python scripts/train.py` or download the model weights as instructed by the project’s documentation.
