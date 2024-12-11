@@ -105,9 +105,13 @@ This application fine-tunes a DistilBERT model on the IMDB movie reviews dataset
    
 2. **Run services:**
    ```bash
-   docker-compose up
+   docker-compose up -d
    ```
-
+3. **Check services:**
+   ```bash
+   docker-compose ps
+   ```
+   
 This will start both the API service and UI.
 
 ## Model Training
@@ -129,7 +133,7 @@ This will:
 - Train the model and save it to the `model/` directory.
 - Log training metrics to `mlruns/` for MLflow tracking.
 
-## Running the Service
+## Running the Service without Docker
 
 If running locally without Docker:
 
@@ -212,4 +216,12 @@ If not using Docker:
 
 This project is released under the [MIT License](LICENSE). You are free to modify and distribute this software as per the license conditions.
 
+## UI Screenshots
 
+![2024-12-11_14-08-51](https://github.com/user-attachments/assets/9709e2b8-d799-49e8-9d11-8e22a25d5941)
+![2024-12-11_14-08-19](https://github.com/user-attachments/assets/8b55cb75-1367-4f86-b052-229ffbd15fd3)
+
+## Backend Screenshots
+
+![2024-12-11_14-10-04](https://github.com/user-attachments/assets/e0aa94fd-f13e-4fc8-89f1-cde2b1ae97bf)
+![2024-12-11_14-10-33](https://github.com/user-attachments/assets/3f6038e0-3a0b-4d90-a963-4709e1a4e356)
