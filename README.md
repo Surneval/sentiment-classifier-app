@@ -1,8 +1,9 @@
 # Sentiment Classifier App
 ### Made by Nadezhda Trusova, HSE, MDS-2
 ### For the course Large Scale Machine Learning-2
+![imdb-full-form](https://github.com/user-attachments/assets/2ee04678-ce6a-400f-8cac-f498d1e07697)
 
-This repository contains a sentiment analysis web application that classifies movie reviews as **positive** or **negative**. It includes:
+### This repository contains a sentiment analysis web application that classifies IMDB movie reviews as **positive** or **negative**. It includes:
 
 - **Model Training Scripts** (using `Hugging Face Transformers`, `PyTorch`, and `PEFT` for LoRA)
 - **MLflow Tracking** for experiment logging
