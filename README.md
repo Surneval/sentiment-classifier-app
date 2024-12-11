@@ -211,6 +211,20 @@ If not using Docker:
   - Check `docker info` to confirm the daemon is active.
   - Try `docker-compose down` followed by `docker-compose up --build`.
   - Try to restart Docker `pkill Docker` and then `open /Applications/Docker.app` and then `docker-compose down` followed by `docker-compose up --build`
+  - Modify you Docker Engine the following way:
+  `{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "dns": [
+    "8.8.8.8",
+    "8.8.4.4"
+  ],
+  "experimental": false
+}`
 
 - **Model or Missing Files:**
   If the model files are missing, rerun `python scripts/train.py` or download the model weights as instructed by the project’s documentation.
