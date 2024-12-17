@@ -8,6 +8,7 @@
 
 - **Model Training Scripts** (using `Hugging Face Transformers`, `PyTorch`, and `PEFT` for LoRA)
 - **MLflow Tracking** for experiment logging
+- **Comet.ml Experiment Tracking** for enhanced experiment visualization and management
 - **FastAPI Service** for model inference
 - **Streamlit UI** for user interaction
 
@@ -21,21 +22,26 @@
   - [Local Setup](#local-setup)
   - [Using Docker and Docker Compose](#using-docker-and-docker-compose)
 - [Model Training](#model-training)
+- [Experiment Tracking with Comet.ml](#experiment-tracking-with-cometml)
 - [Running the Service](#running-the-service)
 - [Running the UI](#running-the-ui)
 - [Making Predictions](#making-predictions)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
+- [UI Screenshots](#ui-screenshots)
+- [Backend Screenshots](#backend-screenshots)
 
 ## Overview
 
-This application fine-tunes a DistilBERT model on the IMDB movie reviews dataset for sentiment classification. It applies Low-Rank Adaptation (LoRA) for more efficient training and logs results to MLflow. The final model is served via a FastAPI backend, and a Streamlit frontend provides a simple UI for user input.
+This application fine-tunes a DistilBERT model on the IMDB movie reviews dataset for sentiment classification. It applies Low-Rank Adaptation (LoRA) for more efficient training and logs results to MLflow and Comet.ml. The final model is served via a FastAPI backend, and a Streamlit frontend provides a simple UI for user input.
 
 ## Features
 
 - **Data Preprocessing:** Clean and split IMDB data into training and validation sets.
 - **Training:** Uses `Hugging Face Transformers` and `PEFT` to fine-tune DistilBERT with LoRA.
-- **Experiment Tracking:** Uses MLflow to log metrics and parameters.
+- **Experiment Tracking:** 
+  - **MLflow:** Logs metrics and parameters locally.
+  - **Comet.ml:** Provides an interactive dashboard for visualizing metrics, parameters, and artifacts.
 - **Model Serving:** A FastAPI endpoint for inference.
 - **User Interface:** A Streamlit web app to easily test sentiment predictions.
 
@@ -49,6 +55,7 @@ This application fine-tunes a DistilBERT model on the IMDB movie reviews dataset
 ├── scripts/                   # Scripts for training, preprocessing, utilities
 │   ├── preprocess_data.py
 │   ├── train.py
+│   ├── train_comet.py         # Script for training with Comet.ml tracking
 │   ├── mlflow_callback.py
 │   └── utils.py
 ├── service/                   # FastAPI service for model inference
@@ -61,7 +68,7 @@ This application fine-tunes a DistilBERT model on the IMDB movie reviews dataset
 │   ├── app.py
 │   └── requirements.txt
 ├── docker-compose.yml
-├── requirements.txt           # Root-level requirements for local dev environment
+├── requirements.txt
 └── README.md
 ```
 
@@ -70,6 +77,7 @@ This application fine-tunes a DistilBERT model on the IMDB movie reviews dataset
 - **Python 3.11+**
 - **pip** and **virtualenv** (or `venv`)
 - **Docker & Docker Compose** (if running via containers)
+- **Comet.ml Account** (for experiment tracking integration)
 - Sufficient memory and storage for model training and inference.
 
 ## Setup and Installation
@@ -111,6 +119,7 @@ This application fine-tunes a DistilBERT model on the IMDB movie reviews dataset
    ```bash
    docker-compose up -d
    ```
+   
 3. **Check services:**
    ```bash
    docker-compose ps
@@ -136,6 +145,63 @@ This will:
 - Preprocess the data (if not done).
 - Train the model and save it to the `model/` directory.
 - Log training metrics to `mlruns/` for MLflow tracking.
+
+## Experiment Tracking with Comet.ml
+
+In addition to MLflow, we have integrated **[Comet.ml](https://www.comet.ml/)** for real-time experiment tracking and improved visualization. Comet.ml provides a comprehensive dashboard to monitor training runs, compare experiments, and track metrics, parameters, and artifacts.
+
+### Configuration
+
+1. **Create `.env` File in `scripts` Folder**
+
+   Inside the `scripts` directory, create a file named `.env`:
+
+   ```bash
+   cd scripts
+   touch .env
+   ```
+
+2. **Populate the `.env` File**
+
+   Open `.env` and add the following (replace the API key and paths as needed):
+
+   ```plaintext
+   COMET_API_KEY=YOUR KEY
+   COMET_WORKSPACE=YOUR WORKSPACE
+   COMET_PROJECT_NAME=general
+   MODEL_DIR=.../my_ml_service/model
+   ```
+
+   > **Note:** Keep your Comet API key secret and do not commit this file to version control. Ensure `.env` is listed in `.gitignore`.
+
+### Running the Comet-Enabled Training Script
+
+With the `.env` file configured:
+
+1. Activate your virtual environment (if not already):
+   ```bash
+   source ../my_ml/bin/activate
+   ```
+
+2. Run the Comet-enabled training script:
+   ```bash
+   python train_comet.py
+   ```
+
+This script will:
+
+- Load credentials and settings from the `.env` file.
+- Log training metrics, parameters, and artifacts to Comet.ml in real-time.
+- Allow you to monitor runs on your Comet.ml dashboard.
+
+### Viewing Experiments on Comet.ml
+
+- Log in to [Comet.ml](https://www.comet.ml/).
+- Go to your workspace (`surneval`) and select the `general` project.
+- Locate the new experiment run generated by `train_comet.py`.
+- Explore metrics, charts, parameters, code snapshots, and downloaded artifacts.
+
+*(Screenshots and detailed instructions will be added soon.)*
 
 ## Running the Service without Docker
 
@@ -195,7 +261,8 @@ If not using Docker:
   ```
 
 - **Via the UI**:
-  Simply open `http://localhost:8501`, enter a review, and click "Predict".
+  Open `http://localhost:8501`, enter a review, and click "Predict".
+
 
 ## Troubleshooting
 
