@@ -1,7 +1,8 @@
 # Sentiment Classifier App
 ### Made by Nadezhda Trusova, HSE, MDS-2
 ### For the course Large Scale Machine Learning-2
-![imdb-full-form](https://github.com/user-attachments/assets/2ee04678-ce6a-400f-8cac-f498d1e07697)
+![IMDB_Logo_2016 svg](https://github.com/user-attachments/assets/7a30f399-9d28-48fc-b694-ece56ce38f09)
+
 
 ### This repository contains a sentiment analysis web application that classifies IMDB movie reviews as **positive** or **negative**. It includes:
 
