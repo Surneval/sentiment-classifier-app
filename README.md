@@ -163,7 +163,7 @@ In addition to MLflow, we have integrated **[Comet.ml](https://www.comet.ml/)** 
 
 2. **Populate the `.env` File**
 
-   Open `.env` and add the following (replace the API key and paths as needed):
+   Open `.env` and add the following (replace the API key and paths with yours):
 
    ```plaintext
    COMET_API_KEY=YOUR KEY
