@@ -172,8 +172,6 @@ In addition to MLflow, we have integrated **[Comet.ml](https://www.comet.ml/)** 
    MODEL_DIR=.../my_ml_service/model
    ```
 
-   > **Note:** Keep your Comet API key secret and do not commit this file to version control. Ensure `.env` is listed in `.gitignore`.
-
 ### Running the Comet-Enabled Training Script
 
 With the `.env` file configured:
